@@ -1,0 +1,18 @@
+.MainSection {
+  width: 70%;
+  border: 1px solid black;  
+  padding: 10px;
+}
+
+.MainSection > button {
+  border: 1px solid blue;
+}
+
+.Note {
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
