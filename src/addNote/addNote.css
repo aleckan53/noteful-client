@@ -1,0 +1,24 @@
+button[name="noteForm"] {
+  width: 100%;
+}
+
+#addNote > * {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+#addNote input, #addNote textarea, #addNote select {
+  width: 150px;
+  box-sizing: border-box;
+}
+
+label {
+  margin-left: 20px;
+}
+
+#addNote {
+  background-color: #efecec;
+  padding: 10px;
+}

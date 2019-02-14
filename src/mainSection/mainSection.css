@@ -1,18 +1,17 @@
-.MainSection {
-  width: 70%;
-  border: 1px solid black;  
-  padding: 10px;
-}
-
 .MainSection > button {
   border: 1px solid blue;
+  border-radius: 100%;
 }
 
 .Note {
-  border: 1px solid black;
+  background-color: #efecec;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+}
+
+h3 {
+  color: #10316b;
 }

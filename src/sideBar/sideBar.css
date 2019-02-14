@@ -1,8 +1,5 @@
-.SideBar {
-  border: 1px solid black;
-  border-collapse: collapse;
-  width: 30%;
-  padding: 10px;
+.SideBar * {
+  box-sizing: border-box;
 }
 
 .SideBar > ul {
@@ -19,13 +16,26 @@
 }
 
 li {
-  border: 1px solid black;
-  height: 40px;
+  color: black;
+  background-color: #efecec;
+  min-height: 40px;
   border-collapse: collapse;
   text-align: center;
 }
 
-a {
+.folder {
   margin: 0 0 10px;
   text-decoration: none;
+  display: block;
+}
+
+#newFolderInput {
+  width: 100%;
+}
+
+.active > li {
+  transform: scale(1.05);
+  color: #0b8457;
+  font-weight: 800;
+  text-transform: uppercase;
 }
