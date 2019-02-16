@@ -23,7 +23,6 @@ export default class MainSection extends React.Component {
       })
       .then(() => {
         this.context.deleteNote(noteId);
-        
       })
       .catch(err=>console.log(err))
   }

@@ -8,8 +8,6 @@ export default class SideBar extends React.Component {
   static contextType = NotesContext;
 
   render () {
-    const location = this.props.history.location.pathname;
-    
     const { noteId } = this.props.match.params;
     const { folders, notes } = this.context;
     const note = !notes.length

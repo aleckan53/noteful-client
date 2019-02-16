@@ -18,7 +18,10 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  static contextType = NotesContext;
+
+  componentWillMount() {
+    
     fetch('http://localhost:9090/db')
       .then(res => {
         if (!res.ok){
@@ -26,8 +29,13 @@ class App extends Component {
         }
         return res.json()
       })
-      .then(res => this.setState({...res}))
+      .then(res => {
+        this.setState({...res})
+        this.context = this.state;
+        console.log(this.context);
+      })
       .catch(err => this.setState({err}))
+
   }
 
   deleteNote = (removedNoteId) => {
@@ -72,7 +80,7 @@ class App extends Component {
       addNote: this.addNote,
       toggleForm: this.toggleForm,
     }
-
+    
     return <>
       <header className="Header">
         <Link to="/"><h1>Noteful</h1></Link>

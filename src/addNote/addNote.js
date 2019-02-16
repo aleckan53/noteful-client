@@ -116,14 +116,14 @@ export default class AddNote extends React.Component {
       <main>
         <form id="addNote" onSubmit={e=>this.handleSubmit(e)}>
           <div>
-            <ValidationError hasError={!this.state.nameValid} message={this.state.validationMsg.name}/>
             <input type="text" name="note-name" id="noteName" onChange={e=>this.updateName(e.target.value)}/>
             <label htmlFor="noteName">Name</label>
+            <ValidationError hasError={!this.state.nameValid} message={this.state.validationMsg.name}/>
           </div>
           <div>
-            <ValidationError hasError={!this.state.contentValid} message={this.state.validationMsg.content}/>
             <textarea type="text-area" name="note-content" id="noteContent" onChange={e=>this.updateContent(e.target.value)}/>
             <label htmlFor="noteContent">Text</label>
+            <ValidationError hasError={!this.state.contentValid} message={this.state.validationMsg.content}/>
           </div>
           <div>
             <select name="note-folderId" id="noteFolderId">
