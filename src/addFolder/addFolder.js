@@ -1,6 +1,7 @@
 import React from 'react';
 import NotesContext from '../Context';
 import ValidationError from '../validationError';
+import PropTypes from 'prop-types';
 
 export default class AddFolder extends React.Component {
   static contextType = NotesContext;
@@ -57,7 +58,7 @@ export default class AddFolder extends React.Component {
     
     const newFolder = {
       name: e.target['folder-name'].value,
-      id: e.target['folder-name'].value+Math.floor(Math.random()*100000) //dummyId generator :)
+      id: e.target['folder-name'].value+Math.floor(Math.random()*100000) // dummy id generator :)
     }
 
     fetch(`http://localhost:9090/folders`, {
@@ -70,7 +71,6 @@ export default class AddFolder extends React.Component {
       .then(res => {
         if(!res.ok) throw new Error(res.statusText);
         this.context.updateFolders(newFolder);
-        this.context.toggleForm();
       })
   }
 
@@ -80,9 +80,12 @@ export default class AddFolder extends React.Component {
         <ValidationError hasError={!this.state.nameValid} message={this.state.validationMsg.name}/>
         <input type="text" name="folder-name" onChange={e=>this.updateName(e.target.value)}/>
         <input type="submit" disabled={!this.state.formValid}/>
-        <button type="button" onClick={()=>this.context.toggleForm()}>Cancel</button>
+        <button type="button" onClick={()=>this.props.toggleForm()}>Cancel</button>
       </form>
     </li>
   }
 }
 
+AddFolder.propTypes = {
+  toggleForm: PropTypes.func
+}

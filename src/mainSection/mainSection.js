@@ -51,7 +51,7 @@ export default class MainSection extends React.Component {
       {notes.length === 1 && noteId
         ? <p>{notes[0].content}</p>
         : <Link to="/add-note">
-          <button>Add note</button>
+            <button>Add note</button>
           </Link>} 
     </main>
   }

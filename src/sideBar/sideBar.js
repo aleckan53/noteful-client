@@ -6,13 +6,25 @@ import AddFolder from '../addFolder/addFolder';
 
 export default class SideBar extends React.Component {
   static contextType = NotesContext;
+  state = {
+    folderForm: false
+  }
+
+  toggleForm (bool) {
+    this.setState({
+      folderForm: bool
+    })
+  }
+
+  componentWillReceiveProps (){
+    this.toggleForm(false)
+  }
 
   render () {
+
     const { noteId } = this.props.match.params;
     const { folders, notes } = this.context;
-    const note = !notes.length
-      ? ''
-      : notes.find(n=>n.id === noteId);
+    const note = notes.find(n=>n.id === noteId);
     const folderName = !note  
       ? ''
       : folders.find(f=>f.id === note.folderId).name;
@@ -25,9 +37,9 @@ export default class SideBar extends React.Component {
               {<li id={f.id}>{f.name}</li>}
             </NavLink>
           )}
-        {!this.context.folderForm 
-          ? <button onClick={()=>this.context.toggleForm()}>Add folder</button>
-          : <AddFolder/>}
+        {!this.state.folderForm 
+          ? <button onClick={()=>this.setState({folderForm: true})}>Add folder</button>
+          : <AddFolder toggleForm={()=>this.toggleForm(false)}/>}
         </ul>
       : <>
         <p>{folderName}</p>

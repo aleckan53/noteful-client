@@ -14,7 +14,6 @@ class App extends Component {
     this.state = {
       folders: [],
       notes: [],
-      displayFolderForm: false
     }
   }
 
@@ -54,12 +53,6 @@ class App extends Component {
   updateFolders = newFolder => {
     this.setState({
       folders: [...this.state.folders, newFolder]
-    })
-  }
-
-  toggleForm = () => {
-    this.setState({
-      folderForm: !this.state.folderForm
     })
   }
 
