@@ -2,6 +2,7 @@ import React from 'react';
 import './mainSection.css';
 import { NavLink, Link } from 'react-router-dom';
 import NotesContext from '../NotesContext';
+import config from '../config';
 
 export default class MainSection extends React.Component {
   static contextType = NotesContext;
@@ -13,7 +14,7 @@ export default class MainSection extends React.Component {
   handleDelete = (e) => {
     e.preventDefault();
     const noteId = e.target.parentNode.id;
-    fetch(`http://localhost:8000/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {'content-type': 'application/json'}
     })

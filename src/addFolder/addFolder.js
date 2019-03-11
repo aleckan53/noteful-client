@@ -3,6 +3,7 @@ import NotesContext from '../NotesContext';
 import ValidationError from '../validationError';
 import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
+import config from '../config';
 
 export default class AddFolder extends React.Component {
   static contextType = NotesContext;
@@ -63,7 +64,7 @@ export default class AddFolder extends React.Component {
       title: this.state.name,
     }
 
-    fetch(`http://localhost:8000/folders`, {
+    fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'POST',
       body: JSON.stringify(newFolder),
       headers: {

@@ -3,6 +3,7 @@ import NotesContext from '../NotesContext';
 import ValidationError from '../validationError';
 import './addNote.css';
 import uuid from 'uuid/v4';
+import config from '../config'
 
 
 export default class AddNote extends React.Component {
@@ -97,7 +98,7 @@ export default class AddNote extends React.Component {
       date_created: new Date()
     }
     
-    fetch(`http://localhost:8000/notes`, {
+    fetch(`${config.API_ENDPOINT}/notes`, {
       method: "POST",
       body: JSON.stringify(newNote),
       headers: {

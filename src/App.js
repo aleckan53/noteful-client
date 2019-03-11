@@ -7,6 +7,7 @@ import NotesContext from './NotesContext';
 import AddNote from './addNote/addNote';
 import MainSectionError from './mainSection/mainSectionError';
 import SideBarError from './sideBar/SideBarError';
+import config from './config'
 
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
 
   componentDidMount() {
     
-    fetch('http://localhost:8000')
+    fetch(config.API_ENDPOINT)
       .then(res => {
         if (!res.ok){
           throw new Error(res.status)
