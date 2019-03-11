@@ -1,5 +1,5 @@
 import React from 'react';
-import NotesContext from '../Context';
+import NotesContext from '../NotesContext';
 import ValidationError from '../validationError';
 import './addNote.css'
 
@@ -87,14 +87,12 @@ export default class AddNote extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
     const newNote = {
-      id: e.target['note-name'].value+Math.floor(Math.random()*100000), //dummyId generator :)
-      name: e.target['note-name'].value,
-      modified: new Date(),
-      folderId: e.target['note-folderId'].value,
+      title: e.target['note-name'].value,
+      folder: e.target['note-folderId'].value,
       content: e.target['note-content'].value
     }
     
-    fetch(`http://localhost:9090/notes`, {
+    fetch(`http://localhost:8000/notes`, {
       method: "POST",
       body: JSON.stringify(newNote),
       headers: {
@@ -129,7 +127,7 @@ export default class AddNote extends React.Component {
             <select name="note-folderId" id="noteFolderId">
               <option value={null} disabled>--Select folder--</option>
               {this.context.folders.map((folder,i)=>
-                <option value={folder.id} key={i}>{folder.name}</option>)}
+                <option value={folder.id} key={i}>{folder.title}</option>)}
             </select>
             <label htmlFor="noteContent">Select folder</label>
           </div>

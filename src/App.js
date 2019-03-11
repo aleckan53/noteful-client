@@ -3,7 +3,7 @@ import './App.css';
 import MainSection from './mainSection/mainSection';
 import SideBar from './sideBar/sideBar';
 import {Link, Route} from 'react-router-dom';
-import NotesContext from './Context';
+import NotesContext from './NotesContext';
 import AddNote from './addNote/addNote';
 import MainSectionError from './mainSection/mainSectionError';
 import SideBarError from './sideBar/SideBarError';
@@ -16,12 +16,15 @@ class App extends Component {
       notes: [],
     }
   }
+  static defaultProps = {
+    showFolderForm: false
+  }
 
   static contextType = NotesContext;
 
-  componentWillMount() {
+  componentDidMount() {
     
-    fetch('http://localhost:9090/db')
+    fetch('http://localhost:8000')
       .then(res => {
         if (!res.ok){
           throw new Error(res.status)
@@ -31,14 +34,13 @@ class App extends Component {
       .then(res => {
         this.setState({...res})
         this.context = this.state;
-        console.log(this.context);
       })
-      .catch(err => this.setState({err}))
+      .catch(err => console.error(err))
 
   }
 
   deleteNote = (removedNoteId) => {
-    const newNotes = this.state.notes.filter(note=>note.id !== removedNoteId);
+    const newNotes = this.state.notes.filter(note=>String(note.id) !== removedNoteId);
     this.setState({
       notes: newNotes
     })
@@ -60,8 +62,8 @@ class App extends Component {
     const routes = ['/', '/folder/:folderId', '/note/:noteId']
     return routes.map((route,i) =>
       route !== '/'
-      ? <Route path={route} key ={i} component={component}/>
-      : <Route exact path={route} key ={i} component={component}/>
+      ? <Route path={route} key ={i} foo='foo' component={component} data={this.state}/>
+      : <Route exact path={route} key ={i} component={component} data={this.state}/>
     )
   }
 
@@ -73,6 +75,8 @@ class App extends Component {
       addNote: this.addNote,
       toggleForm: this.toggleForm,
     }
+    console.log(this.state);
+
     
     return <>
       <header className="Header">

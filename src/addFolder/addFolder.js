@@ -1,5 +1,5 @@
 import React from 'react';
-import NotesContext from '../Context';
+import NotesContext from '../NotesContext';
 import ValidationError from '../validationError';
 import PropTypes from 'prop-types';
 
@@ -57,11 +57,10 @@ export default class AddFolder extends React.Component {
     e.preventDefault();
     
     const newFolder = {
-      name: e.target['folder-name'].value,
-      id: e.target['folder-name'].value+Math.floor(Math.random()*100000) // dummy id generator :)
+      title: e.target['folder-name'].value,
     }
 
-    fetch(`http://localhost:9090/folders`, {
+    fetch(`http://localhost:8000/folders`, {
       method: 'POST',
       body: JSON.stringify(newFolder),
       headers: {
