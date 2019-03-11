@@ -34,7 +34,7 @@ export default class MainSection extends React.Component {
       !noteId && !folderId
         ? this.context.notes
         : this.context.notes.filter(n=>String(n.folder) === folderId || String(n.id) === noteId)
-    
+      
     return <main className="MainSection">
       {notes.map((n,i)=> 
         <div 

@@ -57,7 +57,7 @@ export default class AddFolder extends React.Component {
     e.preventDefault();
     
     const newFolder = {
-      title: e.target['folder-name'].value,
+      title: this.state.name,
     }
 
     fetch(`http://localhost:8000/folders`, {
