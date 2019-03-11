@@ -1,7 +1,9 @@
 import React from 'react';
 import NotesContext from '../NotesContext';
 import ValidationError from '../validationError';
-import './addNote.css'
+import './addNote.css';
+import uuid from 'uuid/v4';
+
 
 export default class AddNote extends React.Component {
   static contextType = NotesContext;
@@ -86,10 +88,13 @@ export default class AddNote extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
+    const id = uuid()
     const newNote = {
+      id,
       title: e.target['note-name'].value,
       folder: e.target['note-folderId'].value,
-      content: e.target['note-content'].value
+      content: e.target['note-content'].value,
+      date_created: new Date()
     }
     
     fetch(`http://localhost:8000/notes`, {

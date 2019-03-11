@@ -2,6 +2,7 @@ import React from 'react';
 import NotesContext from '../NotesContext';
 import ValidationError from '../validationError';
 import PropTypes from 'prop-types';
+import uuid from 'uuid/v4';
 
 export default class AddFolder extends React.Component {
   static contextType = NotesContext;
@@ -55,8 +56,10 @@ export default class AddFolder extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
-    
+    const id = uuid();
+
     const newFolder = {
+      id,
       title: this.state.name,
     }
 
@@ -68,7 +71,9 @@ export default class AddFolder extends React.Component {
       }
     })
       .then(res => {
-        if(!res.ok) throw new Error(res.statusText);
+        if(!res.ok) {
+          return res.json().then(error => Promise.reject(error))
+        }
         this.context.updateFolders(newFolder);
       })
   }

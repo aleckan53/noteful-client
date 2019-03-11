@@ -8,6 +8,7 @@ import AddNote from './addNote/addNote';
 import MainSectionError from './mainSection/mainSectionError';
 import SideBarError from './sideBar/SideBarError';
 
+
 class App extends Component {
   constructor(props){
     super(props);
